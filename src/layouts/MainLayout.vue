@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-header elevated>
       <q-toolbar>
         <q-btn
           flat
@@ -10,16 +10,15 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title>
-          V-Intelligent
-        </q-toolbar-title>
-
-        <div>Sistemas de Estacionamento Inteligente</div>
+<img
+      alt="logo"
+      src="~assets/img/im1.jpeg"
+      style="width: 27vh; height: 10vh"
+    />
       </q-toolbar>
     </q-header>
 
-    <q-drawer
+  <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       bordered
@@ -28,7 +27,7 @@
         <q-item-label
           header
         >
-          Menu
+        Menu
         </q-item-label>
 
         <EssentialLink
@@ -50,46 +49,30 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Cadastro ',
+    caption: 'usuários',
+    icon: 'login',
+    link: 'https://forum.quasar.dev'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Clientes',
+    icon: 'cliente',
+    link: 'https://chat.quasar.dev'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
+    title: 'Estacionamento',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
+    title: 'Caixa',
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'Registro de Movimentação',
+    icon: 'vagas',
+    link: 'https://forum.quasar.dev'
   }
 ]
 
