@@ -45,9 +45,13 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: 'Cadastro ',
-    caption: 'usuários',
-    icon: 'person',
+    title: 'Entrada de veículos ',
+    icon: 'toys',
+    link: 'https://forum.quasar.dev'
+  },
+  {
+    title: 'Saída de veículos',
+    icon: 'output',
     link: 'https://forum.quasar.dev'
   },
   {
@@ -57,7 +61,7 @@ const linksList = [
   },
   {
     title: 'Estacionamento',
-    icon: 'directions_car',
+    icon: 'directions',
     link: 'https://chat.quasar.dev'
   },
   {
