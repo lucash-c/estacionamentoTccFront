@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-  <q-header elevated>
+  <q-header elevated style="background-color: black">
       <q-toolbar>
         <q-btn
           flat
@@ -10,11 +10,7 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-<img
-      alt="logo"
-      src="~assets/img/im1.jpeg"
-      style="width: 27vh; height: 10vh"
-    />
+
       </q-toolbar>
     </q-header>
 
@@ -51,27 +47,27 @@ const linksList = [
   {
     title: 'Cadastro ',
     caption: 'usuários',
-    icon: 'login',
+    icon: 'person',
     link: 'https://forum.quasar.dev'
   },
   {
     title: 'Clientes',
-    icon: 'cliente',
+    icon: 'groups',
     link: 'https://chat.quasar.dev'
   },
   {
     title: 'Estacionamento',
-    icon: 'chat',
+    icon: 'directions_car',
     link: 'https://chat.quasar.dev'
   },
   {
     title: 'Caixa',
-    icon: 'record_voice_over',
+    icon: 'monetization_on',
     link: 'https://forum.quasar.dev'
   },
   {
     title: 'Registro de Movimentação',
-    icon: 'vagas',
+    icon: 'leaderboard',
     link: 'https://forum.quasar.dev'
   }
 ]
