@@ -1,4 +1,4 @@
-/* eslint-disable eqeqeq */
+/* eslint-disable */
 <template>
   <q-page style="min-height: 300px">
     <h5 class="text-primary text-bold q-mb-lg">Bem vindo!</h5>

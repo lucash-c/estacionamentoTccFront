@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="main">
   <q-header elevated style="background-color: black">
       <q-toolbar>
         <q-btn
@@ -10,6 +10,12 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
+        <q-space />
+       <img
+      alt="logo"
+      src="~assets/img/logo.png"
+      style="width: 15vh; height: 8vh"
+    />
 
       </q-toolbar>
     </q-header>
@@ -62,7 +68,7 @@ const linksList = [
   {
     title: 'Estacionamento',
     icon: 'directions',
-    link: 'https://chat.quasar.dev'
+    link: '/estacionamento'
   },
   {
     title: 'Caixa',
