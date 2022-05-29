@@ -19,6 +19,7 @@
     />
 
       </q-toolbar>
+
     </q-header>
 
   <q-drawer
@@ -30,7 +31,15 @@
         <q-item-label
           header
         >
-        Menu
+        <div align="center">
+          <q-avatar size="80px" class="q-mb-sm">
+        <q-img src= "~assets/profile.png" />
+        </q-avatar>
+        <div>Usuario: Lucas Campos</div>
+        </div>
+
+       <br>
+       Menu
         </q-item-label>
 
         <EssentialLink
