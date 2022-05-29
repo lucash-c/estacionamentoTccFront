@@ -55,12 +55,12 @@ const linksList = [
   {
     title: 'Entrada de veículos ',
     icon: 'toys',
-    link: 'https://forum.quasar.dev'
+    link: '#/entrada'
   },
   {
     title: 'Saída de veículos',
     icon: 'output',
-    link: 'https://forum.quasar.dev'
+    link: '#/saida'
   },
   {
     title: 'Clientes',

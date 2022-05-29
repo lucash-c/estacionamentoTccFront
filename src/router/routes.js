@@ -67,6 +67,16 @@ const routes = [
     ]
   },
   {
+    path: '/entrada',
+    component: () => import('pages/Entrada.vue')
+
+  },
+  {
+    path: '/saida',
+    component: () => import('pages/Saida.vue')
+
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }
