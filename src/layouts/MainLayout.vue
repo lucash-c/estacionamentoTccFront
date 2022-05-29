@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="main">
+  <q-layout view="lHh Lpr lFf" class="bg-main">
   <q-header elevated style="background-color: black">
       <q-toolbar>
         <q-btn
@@ -11,6 +11,7 @@
           @click="toggleLeftDrawer"
         />
         <q-space />
+        <span color="white">V-Intelligent</span>
        <img
       alt="logo"
       src="~assets/img/logo.png"
@@ -36,6 +37,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          active-class="text-primary menu-active"
         />
       </q-list>
     </q-drawer>
@@ -63,7 +65,7 @@ const linksList = [
   {
     title: 'Clientes',
     icon: 'groups',
-    link: 'https://chat.quasar.dev'
+    link: '#/clientes'
   },
   {
     title: 'Estacionamento',
@@ -73,7 +75,7 @@ const linksList = [
   {
     title: 'Caixa',
     icon: 'monetization_on',
-    link: 'https://forum.quasar.dev'
+    link: '#/caixa'
   },
   {
     title: 'Registro de Movimentação',
@@ -104,3 +106,10 @@ export default defineComponent({
   }
 })
 </script>
+<style>
+.bg-main {
+  background-image: url("~assets/background.jpg");
+  background-position: center;
+  background-size: cover;
+}
+</style>

@@ -47,6 +47,26 @@ const routes = [
     ]
   },
   {
+    path: '/main',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '/clientes',
+        component: () => import('pages/Clientes.vue'),
+      }
+    ]
+  },
+  {
+    path: '/caixa',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/Caixa.vue')
+      }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }

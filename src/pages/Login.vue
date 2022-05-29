@@ -1,7 +1,7 @@
 /* eslint-disable */
 <template>
   <q-page style="min-height: 300px">
-    <h5 class="text-primary text-bold q-mb-lg">Bem vindo!</h5>
+    <h5 class="text-white text-bold q-mb-lg">Bem vindo!</h5>
 
     <q-form @submit="login">
       <q-input

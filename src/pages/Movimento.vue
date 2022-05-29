@@ -2,12 +2,14 @@
 <q-page class="q-pr-md q-pl-md q-pt-md q-pb-md">
   <div class="q-pa-md">
     <q-table
+     card-class="fileiras"
      style="height: 400px;"
       dense
       title="Registros de Movimentação"
       :rows="rows"
       :columns="columns"
       row-key="name"
+      hide-bottom
     />
   </div>
   </q-page>

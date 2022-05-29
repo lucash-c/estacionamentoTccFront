@@ -1,23 +1,17 @@
 /* eslint-disable */
 <template>
-  <q-card style="width: 300px">
+  <q-card style="width: 250px">
     <q-card-section class="bg-primary text-white">
-      <div class="text-h6 q-pl-md">Adicionar nova fileira</div>
+      <div class="text-h6 q-pl-md">Editar Cliente</div>
     </q-card-section>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-input outlined v-model="descricao" label="Descrição da fileira" />
-        <q-input outlined v-model="comum" label="Quantidade de vagas Comuns" />
-        <q-input
-          outlined
-          v-model="preferencial"
-          label="Quantidade de vagas Preferenciais"
-        />
-        <q-input
-          outlined
-          v-model="mensalista"
-          label="Quantidade de vagas de Mensalistas"
-        />
+        <q-input outlined v-model="cliente.nome" label="Nome" />
+        <q-input outlined v-model="cliente.rg" label="Rg" />
+         <q-input outlined v-model="cliente.telefone" label="Telefone" />
+        <q-input outlined v-model="cliente.mensalidade" label="Mensalidade" />
+         <q-input outlined v-model="cliente.vencimento" label="Vencimento" />
+        <q-input type="text-area" outlined v-model="cliente.observacao" label="Observação" />
       </div>
     </div>
     <!-- footer----------------------------------------------------------------------->
@@ -46,15 +40,26 @@
 import { ref } from 'vue'
 
 export default {
-  name: 'AddNovaFileira',
-  methods: {},
+  name: 'EditCliente',
+  props: {
+    selected: {
+      type: Array,
+      default: ref([])
+    }
+
+  },
+  methods: {
+    load () {
+      this.cliente = this.selected[0]
+    }
+  },
   data () {
     return {
-      descricao: ref(''),
-      comum: ref(0),
-      preferencial: ref(0),
-      mensalista: ref(0)
+      cliente: ref({})
     }
+  },
+  mounted () {
+    this.load()
   }
 }
 

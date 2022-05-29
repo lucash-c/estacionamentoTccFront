@@ -59,7 +59,7 @@ export default {
 
 <style>
 .bg-login {
-  background-image: url("~assets/background.jpg");
+  background-image: url("~assets/img/img2.jpg");
   background-position: center;
   background-size: cover;
 }
