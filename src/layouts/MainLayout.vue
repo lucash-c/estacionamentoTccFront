@@ -68,7 +68,7 @@ const linksList = [
   {
     title: 'Estacionamento',
     icon: 'directions',
-    link: '/estacionamento'
+    link: '#/estacionamento'
   },
   {
     title: 'Caixa',
@@ -78,7 +78,7 @@ const linksList = [
   {
     title: 'Registro de Movimentação',
     icon: 'leaderboard',
-    link: 'https://forum.quasar.dev'
+    link: '#/movimento'
   }
 ]
 

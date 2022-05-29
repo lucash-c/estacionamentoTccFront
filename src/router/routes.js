@@ -37,6 +37,16 @@ const routes = [
     ]
   },
   {
+    path: '/movimento',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/Movimento.vue')
+      }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }

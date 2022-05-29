@@ -1,21 +1,23 @@
+/* eslint-disable vue/require-valid-default-prop */
+/* eslint-disable vue/require-valid-default-prop */
 /* eslint-disable */
 <template>
   <q-card style="width: 250px">
     <q-card-section class="bg-primary text-white">
-      <div class="text-h6 q-pl-md">Adicionar nova fileira</div>
+      <div class="text-h6 q-pl-md">Editar fileira</div>
     </q-card-section>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-input outlined v-model="descricao" label="Descrição da fileira" />
-        <q-input outlined v-model="comum" label="Quantidade de vagas Comuns" />
+        <q-input outlined v-model="fileira.fileira" label="Descrição da fileira" />
+        <q-input outlined v-model="fileira.comum" label="Quantidade de vagas Comuns" />
         <q-input
           outlined
-          v-model="preferencial"
+          v-model="fileira.preferencial"
           label="Quantidade de vagas Preferenciais"
         />
         <q-input
           outlined
-          v-model="mensalista"
+          v-model="fileira.mensalista"
           label="Quantidade de vagas de Mensalistas"
         />
       </div>
@@ -46,16 +48,30 @@
 import { ref } from 'vue'
 
 export default {
-  name: 'AddNovaFileira',
-  methods: {},
+  name: 'EditFileira',
+
+  props: {
+    selected: {
+      default: ref([]),
+      type: Array
+
+    }
+  },
+  methods: {
+
+    load () {
+      this.fileira = this.selected[0]
+    }
+  },
   data () {
     return {
-      descricao: ref(''),
-      comum: ref(0),
-      preferencial: ref(0),
-      mensalista: ref(0)
+      fileira: ref({})
     }
+  },
+  mounted () {
+    this.load()
   }
+
 }
 
 </script>
