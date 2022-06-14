@@ -1,6 +1,6 @@
 import { Loading, Notify, QSpinnerBars } from 'quasar'
 
-export function showLoading (message) {
+export function showLoading(message) {
   Loading.show({
     message: message,
     spinner: QSpinnerBars,
@@ -8,11 +8,11 @@ export function showLoading (message) {
   })
 }
 
-export function hideLoading () {
+export function hideLoading() {
   Loading.hide()
 }
 
-export function showNegativeNotify (message) {
+export function showNegativeNotify(message) {
   Notify.create({
     message: message,
     type: 'negative',
@@ -25,7 +25,7 @@ export function showNegativeNotify (message) {
   })
 }
 
-export function showWarningNotify (message) {
+export function showWarningNotify(message) {
   Notify.create({
     message: message,
     type: 'warning',
@@ -38,7 +38,7 @@ export function showWarningNotify (message) {
   })
 }
 
-export function showPositiveNotify (message, action) {
+export function showPositiveNotify(message) {
   Notify.create({
     message: message,
     type: 'positive',
@@ -49,6 +49,5 @@ export function showPositiveNotify (message, action) {
         color: 'white'
       }
     ],
-    onDismiss: action
   })
 }

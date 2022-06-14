@@ -6,16 +6,24 @@
     </q-card-section>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-input outlined v-model="descricao" label="Descrição da fileira" />
-        <q-input outlined v-model="comum" label="Quantidade de vagas Comuns" />
         <q-input
           outlined
-          v-model="preferencial"
+          v-model="fileira.descricao"
+          label="Descrição da fileira"
+        />
+        <q-input
+          outlined
+          v-model="fileira.countComuns"
+          label="Quantidade de vagas Comuns"
+        />
+        <q-input
+          outlined
+          v-model="fileira.countPreferencial"
           label="Quantidade de vagas Preferenciais"
         />
         <q-input
           outlined
-          v-model="mensalista"
+          v-model="fileira.countMensalista"
           label="Quantidade de vagas de Mensalistas"
         />
       </div>
@@ -32,10 +40,11 @@
           v-close-popup
         />
         <q-btn
+          v-close-popup
           label="Adicionar"
           type="submit"
           color="primary"
-          @click="save()"
+          @click="addFileira()"
         />
       </div>
     </q-card-actions>
@@ -43,19 +52,27 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-
+import { ref } from "vue";
+import { postFileira, deleteFileira } from "../services/fileira";
+import { showNegativeNotify, showPositiveNotify } from "src/util/plugins";
 export default {
-  name: 'AddNovaFileira',
-  methods: {},
-  data () {
+  name: "addNovaFileira",
+  methods: {
+    async addFileira() {
+      console.log(this.fileira);
+      await postFileira(this.fileira);
+      window.location.reload();
+    },
+  },
+  data() {
     return {
-      descricao: ref(''),
-      comum: ref(0),
-      preferencial: ref(0),
-      mensalista: ref(0)
-    }
-  }
-}
-
+      fileira: {
+        descricao: "",
+        countComuns: 0,
+        countPreferencial: 0,
+        countMensalista: 0,
+      },
+    };
+  },
+};
 </script>

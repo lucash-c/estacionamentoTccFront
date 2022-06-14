@@ -1,6 +1,4 @@
-/* eslint-disable vue/require-valid-default-prop */
-/* eslint-disable vue/require-valid-default-prop */
-/* eslint-disable */
+
 <template>
   <q-card style="width: 250px">
     <q-card-section class="bg-primary text-white">
@@ -8,16 +6,24 @@
     </q-card-section>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-input outlined v-model="fileira.fileira" label="Descrição da fileira" />
-        <q-input outlined v-model="fileira.comum" label="Quantidade de vagas Comuns" />
         <q-input
           outlined
-          v-model="fileira.preferencial"
+          v-model="fileira.descricao"
+          label="Descrição da fileira"
+        />
+        <q-input
+          outlined
+          v-model="fileira.countComuns"
+          label="Quantidade de vagas Comuns"
+        />
+        <q-input
+          outlined
+          v-model="fileira.countPreferencial"
           label="Quantidade de vagas Preferenciais"
         />
         <q-input
           outlined
-          v-model="fileira.mensalista"
+          v-model="fileira.countMensalista"
           label="Quantidade de vagas de Mensalistas"
         />
       </div>
@@ -33,45 +39,48 @@
           class="q-ml-sm"
           v-close-popup
         />
-        <q-btn
-          label="Adicionar"
-          type="submit"
-          color="primary"
-          @click="save()"
-        />
       </div>
     </q-card-actions>
   </q-card>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
+import { putFileira } from "../services/fileira";
+import { showPositiveNotify, showNegativeNotify } from "../util/plugins";
 
 export default {
-  name: 'EditFileira',
+  name: "EditFileira",
 
   props: {
     selected: {
       default: ref([]),
-      type: Array
-
-    }
+      type: Array,
+    },
   },
   methods: {
-
-    load () {
-      this.fileira = this.selected[0]
-    }
+    async editarFileira() {
+      let response = await putFileira(this.fileira);
+      console.log(response);
+      /* if (response.status == 200) {
+        showPositiveNotify("Os dados da fileira foram alterados com sucesso");
+      } else {
+        showNegativeNotify(
+          "Houve uma falha ao tentar editar a fileira selecionada. Por favor tente novamente mais tarde."
+        );
+      }*/
+    },
+    load() {
+      this.fileira = this.selected[0];
+    },
   },
-  data () {
+  data() {
     return {
-      fileira: ref({})
-    }
+      fileira: ref({}),
+    };
   },
-  mounted () {
-    this.load()
-  }
-
-}
-
+  mounted() {
+    this.load();
+  },
+};
 </script>

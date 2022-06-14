@@ -1,55 +1,60 @@
 /* app global css */
 
 .fileiras {
-    color: #fff;
-    background: linear-gradient(120deg, #35a2ff, #0e0e3e);
+  color: #fff;
+  background: linear-gradient(120deg, #35a2ff, #0e0e3e);
+}
+
+.vagas {
+  color: #fff;
+  background: linear-gradient(120deg, #8cbaf6, #9090cb);
 }
 
 .title {
-    color: #fff;
+  color: #fff;
 }
 
 .mdfe {
-    color: #fff;
-    background: linear-gradient(120deg, #ffff00, #ff0000);
+  color: #fff;
+  background: linear-gradient(120deg, #ffff00, #ff0000);
 }
 
 .main {
-    color: rgb(21, 16, 16);
-    background: linear-gradient(120deg, #7d747a, #281e48);
+  color: rgb(21, 16, 16);
+  background: linear-gradient(120deg, #7d747a, #281e48);
 }
 
 .entry {
-    color: #fff;
-    background: linear-gradient(120deg, #6ab9ff, #4f4fff);
+  color: #fff;
+  background: linear-gradient(120deg, #6ab9ff, #4f4fff);
 }
 
 .exit {
-    color: #fff;
-    background: linear-gradient(120deg, #cccccc, #555555);
+  color: #fff;
+  background: linear-gradient(120deg, #cccccc, #555555);
 }
 
 .event {
-    color: #fff;
-    background: linear-gradient(120deg, #ffa500, #964b00);
+  color: #fff;
+  background: linear-gradient(120deg, #ffa500, #964b00);
 }
 
 .cce {
-    color: #333;
-    background: linear-gradient(120deg, #fffccc, #ffff00);
+  color: #333;
+  background: linear-gradient(120deg, #fffccc, #ffff00);
 }
 
 .ok {
-    color: #fff;
-    background: linear-gradient(120deg, #64ff64, #11a311);
+  color: #fff;
+  background: linear-gradient(120deg, #64ff64, #11a311);
 }
 
 .cancel {
-    color: #fff;
-    background: linear-gradient(120deg, #ff6666, #ff0000);
+  color: #fff;
+  background: linear-gradient(120deg, #ff6666, #ff0000);
 }
 
 .total {
-    color: #fff;
-    background: linear-gradient(120deg, #999999, #333333);
+  color: #fff;
+  background: linear-gradient(120deg, #999999, #333333);
 }

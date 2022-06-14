@@ -6,13 +6,28 @@
     </q-card-section>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-
-        <q-input outlined v-model="cliente.nome" label="Nome" />
-        <q-input outlined v-model="cliente.rg" label="Rg" />
-         <q-input outlined v-model="cliente.telefone" label="Telefone" />
-        <q-input outlined v-model="cliente.mensalidade" label="Mensalidade" />
-         <q-input outlined v-model="cliente.vencimento" label="Vencimento" />
-        <q-input type="text-area" outlined v-model="cliente.observacao" label="Observação" />
+        <q-toggle v-model="cliente.bloqueado"> Bloquear </q-toggle>
+        <q-input dense outlined v-model="cliente.nome" label="Nome" />
+        <q-input dense outlined v-model="cliente.rg" label="Rg" />
+        <q-input dense outlined v-model="cliente.telefone" label="Telefone" />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.mensalidade"
+          label="Mensalidade"
+        />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.vencimento"
+          label="Vencimento"
+        />
+        <q-input
+          type="text-area"
+          outlined
+          v-model="cliente.observacao"
+          label="Observação"
+        />
       </div>
     </div>
     <!-- footer----------------------------------------------------------------------->
@@ -26,42 +41,40 @@
           class="q-ml-sm"
           v-close-popup
         />
-        <q-btn
-          label="Adicionar"
-          type="submit"
-          color="primary"
-          @click="save()"
-        />
+        <q-btn label="Editar" type="submit" color="primary" @click="save()" />
       </div>
     </q-card-actions>
   </q-card>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
+import { putCliente } from "src/services/cliente";
 
 export default {
-  name: 'EditCliente',
+  name: "EditCliente",
   props: {
     selected: {
       type: Array,
-      default: ref([])
-    }
-
+      default: ref([]),
+    },
   },
   methods: {
-    load () {
-      this.cliente = this.selected[0]
-    }
+    async save() {
+      await putCliente(this.cliente);
+      window.location.reload();
+    },
+    load() {
+      this.cliente = this.selected[0];
+    },
   },
-  data () {
+  data() {
     return {
-      cliente: ref({})
-    }
+      cliente: ref({}),
+    };
   },
-  mounted () {
-    this.load()
-  }
-}
-
+  mounted() {
+    this.load();
+  },
+};
 </script>
