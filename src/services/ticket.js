@@ -1,8 +1,7 @@
-/* eslint-disable */
 import { api } from "../boot/axios"
 
-export const getClientes = async () => {
-  return api.get('/clientes')
+export const getTickets = async () => {
+  return api.get('/tickets')
     .then((response) => {
       if (response.status == 200) {
         return response;
@@ -17,8 +16,8 @@ export const getClientes = async () => {
     })
 }
 
-export const getClienteByCod = async (cod) => {
-  return api.get('/clientes/' + cod)
+export const getTicketById = async (id) => {
+  return api.get('/tickets/id/' + id)
     .then((response) => {
       if (response.status == 200) {
         return response;
@@ -33,8 +32,8 @@ export const getClienteByCod = async (cod) => {
     })
 }
 
-export const putCliente = async (cliente) => {
-  return api.put('/clientes/update', cliente)
+export const createTicket = async (data) => {
+  return api.post('/tickets/add', data)
     .then((response) => {
       if (response.status == 200) {
         return response;
@@ -49,8 +48,8 @@ export const putCliente = async (cliente) => {
     })
 }
 
-export const postCliente = async (cliente) => {
-  return api.post('/clientes/add', cliente)
+export const putTicket = async (ticket) => {
+  return api.put('/tickets/update', ticket)
     .then((response) => {
       if (response.status == 200) {
         return response;
@@ -65,8 +64,8 @@ export const postCliente = async (cliente) => {
     })
 }
 
-export const deleteCliente = async (cod) => {
-  return api.delete('/clientes/remove/' + cod)
+export const deleteTicket = async (id) => {
+  return api.delete('/tickets/remove/' + id)
     .then((response) => {
       if (response.status == 200) {
         return response;

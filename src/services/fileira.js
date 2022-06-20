@@ -17,6 +17,22 @@ export const getFileiras = async () => {
     })
 }
 
+export const getFileirasById = async (id) => {
+  return api.get('/fileiras/id/' + id)
+    .then((response) => {
+      if (response.status == 200) {
+        return response;
+      }
+      return null;
+    })
+    .catch((err) => {
+      if (err.response) {
+        return err.response;
+      }
+      return null;
+    })
+}
+
 export const getFileiraByDesc = async (desc) => {
   return api.get('/fileiras/' + desc)
     .then((response) => {

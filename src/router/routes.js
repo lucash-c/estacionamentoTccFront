@@ -20,19 +20,13 @@ const routes = [
     ]
   },
   {
-    path: '/main',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
-  },
-  {
     path: '/estacionamento',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
         path: '',
-        component: () => import('pages/Estacionamento.vue')
+        component: () => import('pages/Estacionamento.vue'),
+        beforeEnter: validationRoute,
       }
     ]
   },
@@ -42,7 +36,8 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/Movimento.vue')
+        component: () => import('pages/Movimento.vue'),
+        beforeEnter: validationRoute
       }
     ]
   },
@@ -53,6 +48,7 @@ const routes = [
       {
         path: '/clientes',
         component: () => import('pages/Clientes.vue'),
+        beforeEnter: validationRoute
       }
     ]
   },
@@ -62,18 +58,21 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/Caixa.vue')
+        component: () => import('pages/Caixa.vue'),
+        beforeEnter: validationRoute
       }
     ]
   },
   {
     path: '/entrada',
-    component: () => import('pages/Entrada.vue')
+    component: () => import('pages/Entrada.vue'),
+    beforeEnter: validationRoute,
 
   },
   {
     path: '/saida',
-    component: () => import('pages/Saida.vue')
+    component: () => import('pages/Saida.vue'),
+    beforeEnter: validationRoute,
 
   },
   {

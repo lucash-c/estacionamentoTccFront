@@ -1,48 +1,73 @@
 /* eslint-disable */
 <template>
-  <q-card style="width: 250px">
+  <q-card style="width: 300px">
     <q-card-section class="bg-primary text-white">
       <div class="text-h6 q-pl-md">Editar Cliente</div>
     </q-card-section>
-    <div class="q-pa-md">
-      <div class="q-gutter-md" style="max-width: 300px">
-        <q-toggle v-model="cliente.bloqueado"> Bloquear </q-toggle>
+    <q-card-section style="height: 70vh">
+      <div class="q-gutter-sm">
+        <q-toggle dense v-model="cliente.bloqueado">
+          {{ cliente.bloqueado ? "Desbloquear" : "Bloquear" }}
+        </q-toggle>
         <q-input dense outlined v-model="cliente.nome" label="Nome" />
-        <q-input dense outlined v-model="cliente.rg" label="Rg" />
-        <q-input dense outlined v-model="cliente.telefone" label="Telefone" />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.rg"
+          label="Rg"
+          mask="##.###.###"
+        />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.telefone"
+          label="Telefone"
+          mask="(##)-####-####"
+        />
         <q-input
           dense
           outlined
           v-model="cliente.mensalidade"
-          label="Mensalidade"
+          label="Mensalidade R$"
+          input-class="text-right"
         />
         <q-input
           dense
           outlined
           v-model="cliente.vencimento"
-          label="Vencimento"
+          label="Vencimento / Dia do mês"
+          mask="##"
         />
         <q-input
-          type="text-area"
+          dense
+          type="textarea"
           outlined
           v-model="cliente.observacao"
           label="Observação"
+          maxlength="1000"
+          counter
         />
       </div>
-    </div>
+    </q-card-section>
+
     <!-- footer----------------------------------------------------------------------->
     <q-card-actions align="right">
-      <div>
-        <q-btn
-          label="Cancelar"
-          type="onReset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-          v-close-popup
-        />
-        <q-btn label="Editar" type="submit" color="primary" @click="save()" />
-      </div>
+      <q-btn
+        dense
+        label="Cancelar"
+        type="onReset"
+        color="primary"
+        flat
+        class="q-ml-sm"
+        v-close-popup
+      />
+      <q-btn
+        dense
+        label="Editar"
+        type="submit"
+        color="primary"
+        @click="save()"
+      />
     </q-card-actions>
   </q-card>
 </template>
@@ -61,7 +86,11 @@ export default {
   },
   methods: {
     async save() {
-      await putCliente(this.cliente);
+      this.cliente.mensalidade = String(this.cliente.mensalidade).replace(
+        ",",
+        "."
+      );
+      let response = await putCliente(this.cliente);
       window.location.reload();
     },
     load() {

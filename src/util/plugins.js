@@ -1,4 +1,4 @@
-import { Loading, Notify, QSpinnerBars } from 'quasar'
+import { Loading, Notify, QSpinnerBars } from 'quasar';
 
 export function showLoading(message) {
   Loading.show({
@@ -20,9 +20,9 @@ export function showNegativeNotify(message) {
       {
         icon: 'close',
         color: 'white'
-      }
-    ]
-  })
+      },
+    ],
+  });
 }
 
 export function showWarningNotify(message) {
@@ -33,9 +33,9 @@ export function showWarningNotify(message) {
       {
         icon: 'close',
         color: 'white'
-      }
-    ]
-  })
+      },
+    ],
+  });
 }
 
 export function showPositiveNotify(message) {
@@ -47,7 +47,7 @@ export function showPositiveNotify(message) {
       {
         icon: 'close',
         color: 'white'
-      }
+      },
     ],
-  })
+  });
 }

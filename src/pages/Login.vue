@@ -54,107 +54,107 @@
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
-import { onBeforeMount } from '@vue/runtime-core'
-import { LocalStorage } from 'quasar'
-import {
-  TOKEN_STORAGE,
-  DOMAIN_STORAGE,
-  USER_STORAGE
-} from '../variables/LocalStorage'
-import { isEmpty, isLength } from '../util/validator'
-import { isValidToken, loginService } from '../services/auth'
-import { showNegativeNotify, showWarningNotify } from '../util/plugins'
+import { reactive } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { LocalStorage } from "quasar";
+import { USER_STORAGE } from "../variables/LocalStorage";
+import { isEmpty, isLength } from "../util/validator";
+import { loginService } from "../services/auth";
+import { onBeforeMount } from "@vue/runtime-core";
+import { useQuasar } from "quasar";
+import { showNegativeNotify, showWarningNotify } from "src/util/plugins";
+
+const $q = useQuasar();
+
 export default {
-  setup () {
+  setup() {
     const state = reactive({
       isLoading: false,
       errorsState: {},
       isVisiblePassword: false,
-      currentScreen: 'login',
+      currentScreen: "login",
       user: {
-        username: '',
-        password: ''
-      }
-    })
-    const router = useRouter()
+        username: "",
+        password: "",
+      },
+    });
+    const router = useRouter();
+
     onBeforeMount(() => {
-      if (isValidToken()) {
-        return router.push('/dashboard')
+      if (LocalStorage.getItem(USER_STORAGE)) {
+        return router.push("/estacionamento");
       }
-    })
-    function resetLoginForm () {
-      state.user.username = ''
-      state.user.password = ''
+    });
+    function resetLoginForm() {
+      state.user.username = "";
+      state.user.password = "";
     }
-    function toggleVisibility () {
-      state.isVisiblePassword = !state.isVisiblePassword
+    function toggleVisibility() {
+      state.isVisiblePassword = !state.isVisiblePassword;
     }
-    function login () {
+    function login() {
       if (validateLoginForm()) {
-        state.isLoading = true
-        handleLogin()
+        state.isLoading = true;
+        handleLogin();
       }
     }
-    function validateLoginForm () {
+    function validateLoginForm() {
       if (isEmpty(state.user.username)) {
-        showWarningNotify('Usuário não preenchido.')
-        return false
+        showWarningNotify("Email de Usuario não preenchido");
+        return false;
       }
       if (isEmpty(state.user.password)) {
-        showWarningNotify('Senha não preenchida')
-        return false
+        showWarningNotify("Senha não preenchida");
+        return false;
       } else if (
         !isLength(state.user.password, { gte: 4, lte: 255, trim: true })
       ) {
-        showWarningNotify('Senha inválida.')
-        return false
+        showWarningNotify("Senha inválida.");
+        return false;
       }
-      return true
+      return true;
     }
-    async function handleLogin () {
-      const username = state.user.username
-      const password = state.user.password
-      const response = await loginService(username, password)
-      if (!response) {
-        state.isLoading = false
-        showNegativeNotify('Ocorreu um erro ao fazer o login.')
-        return
+    async function handleLogin() {
+      const username = state.user.username;
+      const password = state.user.password;
+      let response = await loginService(username, password);
+      if (!response.status) {
+        state.isLoading = false;
+        showNegativeNotify("Ocorreu um erro ao fazer o login.");
+        return;
       }
-      // eslint-disable-next-line eqeqeq
+
       if (response.status == 200) {
-        state.isLoading = false
+        state.isLoading = false;
         if (response.data.success) {
-          const data = response.data.data
-          LocalStorage.set(DOMAIN_STORAGE, data.did)
-          LocalStorage.set(USER_STORAGE, data.uid)
-          LocalStorage.set(TOKEN_STORAGE, data.token)
-          return router.push('/dashboard')
+          const data = response.data;
+          LocalStorage.set(USER_STORAGE, data);
+
+          return router.push("/estacionamento");
         } else {
-          state.isLoading = false
-          showNegativeNotify('Usuário ou senha inválidos.')
+          state.isLoading = false;
+          showNegativeNotify("Usuário ou senha inválidos.");
         }
       }
       // eslint-disable-next-line eqeqeq
-      if (response.status == 401) {
-        state.isLoading = false
-        showNegativeNotify('Usuário ou senha inválidos.')
+      if (response.status == 404) {
+        state.isLoading = false;
+        showNegativeNotify("Usuário ou senha inválidos.");
       }
       // eslint-disable-next-line eqeqeq
       if (response.status == 500) {
-        state.isLoading = false
-        showWarningNotify('O servidor está temporariamente indisponível')
+        state.isLoading = false;
+        showWarningNotify("O servidor está temporariamente indisponível");
       }
     }
     return {
       state,
       resetLoginForm,
       toggleVisibility,
-      login
-    }
-  }
-}
+      login,
+    };
+  },
+};
 </script>
 
 <style scoped>

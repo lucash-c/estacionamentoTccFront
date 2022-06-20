@@ -71,6 +71,7 @@ const columns = [
     label: "Comum",
     align: "center",
     field: "countComuns",
+    format: (val, row) => row.countDispComuns + " / " + row.countComuns,
     sortable: true,
   },
   {
@@ -78,6 +79,8 @@ const columns = [
     label: "Preferencial",
     align: "center",
     field: "countPreferencial",
+    format: (val, row) =>
+      row.countDispPreferencial + " / " + row.countPreferencial,
     sortable: true,
   },
   {
@@ -85,6 +88,7 @@ const columns = [
     label: "Mensalista",
     align: "center",
     field: "countMensalista",
+    format: (val, row) => row.countDispMensalista + " / " + row.countMensalista,
     sortable: true,
   },
   {
@@ -94,9 +98,13 @@ const columns = [
     field: "total",
     sortable: true,
     format: (val, row) =>
-      Number(row.countComuns) +
-      Number(row.countPreferencial) +
-      Number(row.countMensalista),
+      Number(row.countDispComuns) +
+      Number(row.countDispPreferencial) +
+      Number(row.countDispMensalista) +
+      " / " +
+      (Number(row.countComuns) +
+        Number(row.countPreferencial) +
+        Number(row.countMensalista)),
   },
 ];
 

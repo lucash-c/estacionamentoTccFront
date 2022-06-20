@@ -15,7 +15,36 @@
         :rows="rows"
         :columns="columns"
         row-key="cod"
-      />
+        :filter="filter"
+        virtual-scroll
+        :virtual-scroll-item-size="48"
+        :pagination="{ rowsPerPage: 10 }"
+      >
+        <template v-slot:top-right>
+          <q-input
+            style="color: white"
+            borderless
+            dense
+            debounce="300"
+            v-model="filter"
+            placeholder="Buscar Cliente"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+        </template>
+
+        <template v-slot:no-data="{ icon, message, filter }">
+          <div class="full-width row flex-center text-accent q-gutter-sm">
+            <q-icon size="2em" name="sentiment_dissatisfied" />
+            <span>
+              Desculpe, não encontramos nenhum registro... {{ message }}
+            </span>
+            <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+          </div>
+        </template>
+      </q-table>
       <br />
       <div align="center">
         <q-btn
@@ -50,10 +79,10 @@
       </div>
     </div>
   </q-page>
-  <q-dialog v-model="openNovoCliente">
+  <q-dialog persistent v-model="openNovoCliente">
     <addNovoCliente />
   </q-dialog>
-  <q-dialog v-model="openEditCliente">
+  <q-dialog persistent v-model="openEditCliente">
     <EditCliente :selected="selected" />
   </q-dialog>
   <q-dialog v-model="confirmDeleteClienteDialog">
@@ -67,8 +96,16 @@ import EditCliente from "src/components/EditCliente.vue";
 import addNovoCliente from "src/components/addNovoCliente.vue";
 import confirmDeleteCliente from "src/components/confirmDeleteCliente.vue";
 import { getClientes } from "src/services/cliente";
+import { formatCurrency } from "src/util/format";
 
 const columns = [
+  {
+    name: "cod",
+    label: "Código",
+    align: "center",
+    field: "cod",
+    sortable: true,
+  },
   {
     name: "nome",
     align: "center",
@@ -92,9 +129,10 @@ const columns = [
   },
   {
     name: "mensalidade",
-    label: "Valor da Mensalidade",
+    label: "Mensalidade R$",
     align: "center",
     field: "mensalidade",
+    format: (val, row) => (val ? formatCurrency(val) : ""),
     sortable: true,
   },
   {
@@ -105,18 +143,18 @@ const columns = [
     sortable: true,
   },
   {
-    name: "observacao",
-    label: "Observação",
-    align: "center",
-    field: "observacao",
-    sortable: true,
-  },
-  {
     name: "bloqueado",
     label: "Status",
     align: "center",
     field: "bloqueado",
     format: (val, row) => (val ? "Bloqueado" : "Liberado"),
+    sortable: true,
+  },
+  {
+    name: "observacao",
+    label: "Observação",
+    align: "center",
+    field: "observacao",
     sortable: true,
   },
 ];
@@ -134,6 +172,7 @@ export default defineComponent({
 
   setup() {
     return {
+      filter: ref(""),
       selected: ref([]),
       confirmDeleteClienteDialog: ref(false),
       openNovoCliente: ref(false),
@@ -144,7 +183,7 @@ export default defineComponent({
   },
   async mounted() {
     let response = await getClientes();
-    this.rows = response.data;
+    if (response.data) this.rows = response.data;
   },
 });
 </script>

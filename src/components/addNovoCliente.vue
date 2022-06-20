@@ -4,40 +4,69 @@
     <q-card-section class="bg-primary text-white">
       <div class="text-h6 q-pl-md">Adicionar Novo Cliente</div>
     </q-card-section>
-    <div class="q-pa-md">
-      <div class="q-gutter-md" style="max-width: 300px">
-        <q-input outlined v-model="cliente.nome" label="Nome" />
-        <q-input outlined v-model="cliente.rg" label="Rg" />
-        <q-input outlined v-model="cliente.telefone" label="Telefone" />
-        <q-input outlined v-model="cliente.mensalidade" label="Mensalidade" />
-        <q-input outlined v-model="cliente.vencimento" label="Vencimento" />
+
+    <q-card-section style="height: 70vh">
+      <div class="q-gutter-sm">
+        <q-input dense outlined v-model="cliente.nome" label="Nome" />
         <q-input
-          type="text-area"
+          dense
+          outlined
+          v-model="cliente.rg"
+          label="Rg"
+          mask="##.###.###"
+        />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.telefone"
+          label="Telefone"
+          mask="(##) ####-####"
+        />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.mensalidade"
+          label="Mensalidade R$"
+          input-class="text-right"
+        />
+        <q-input
+          dense
+          outlined
+          v-model="cliente.vencimento"
+          label="Vencimento / Dia do mês"
+          mask="##"
+        />
+        <q-input
+          dense
+          type="textarea"
           outlined
           v-model="cliente.observacao"
           label="Observação"
+          maxlength="1000"
+          counter
         />
       </div>
-    </div>
+    </q-card-section>
+
     <!-- footer----------------------------------------------------------------------->
     <q-card-actions align="right">
-      <div>
-        <q-btn
-          label="Cancelar"
-          type="onReset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-          v-close-popup
-        />
-        <q-btn
-          label="Adicionar"
-          type="submit"
-          color="primary"
-          v-close-popup
-          @click="addCliente()"
-        />
-      </div>
+      <q-btn
+        dense
+        label="Cancelar"
+        type="onReset"
+        color="primary"
+        flat
+        class="q-ml-sm"
+        v-close-popup
+      />
+      <q-btn
+        dense
+        label="Adicionar"
+        type="submit"
+        color="primary"
+        v-close-popup
+        @click="addCliente()"
+      />
     </q-card-actions>
   </q-card>
 </template>
@@ -49,6 +78,10 @@ export default {
   name: "addNovoCliente",
   methods: {
     async addCliente() {
+      this.cliente.mensalidade = String(this.cliente.mensalidade).replace(
+        ",",
+        "."
+      );
       await postCliente(this.cliente);
       window.location.reload();
     },
